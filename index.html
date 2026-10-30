@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123c36">
+<meta name="description" content="서울 지하철역의 엘리베이터, 휠체어 리프트·급속충전기, 장애인 화장실, 교통약자 도우미 정보를 한곳에서 확인하세요.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23123c36'/%3E%3Ctext x='32' y='44' font-size='34' font-weight='800' text-anchor='middle' fill='white' font-family='sans-serif'%3E%EC%9D%B4%3C/text%3E%3C/svg%3E">
+<title>이음맵 — 휠체어 이동 정보</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="app-header">
+  <a class="brand" href="#" aria-label="이음맵 홈"><span class="brand-icon">이</span><span><b>이음맵</b><small>WHEELCHAIR ACCESS MAP</small></span></a>
+  <div class="header-actions"><span id="connectionPill" class="connection-pill loading" role="status"><i></i> 데이터 불러오는 중</span><button id="openSettings" class="icon-button" aria-label="데이터 연결 상태" title="데이터 연결 상태">⚙</button></div>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow"><span></span> 이동 접근성 정보</div>
+      <h1>이동하기 전에,<br><em>한 번 더 확인해요.</em></h1>
+      <p>엘리베이터·휠체어 리프트·급속충전기·장애인 화장실·교통약자 도우미 정보와 이동 불편 제보를 한곳에서 확인하고, 더 나은 이동 정보를 함께 만들어요.</p>
+      <div class="hero-note"><span class="note-icon">i</span><span>실제 이동 전에는 역무원과 운영기관의 최신 안내를 확인하세요. 지도 정보만으로 이동 가능 여부를 보장할 수 없습니다.</span></div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+      <div class="art-card"><div class="art-elevator">↕</div><div class="art-line"></div><div class="art-dot"></div><div class="art-pin">✓</div></div>
+      <span class="art-label label-top">ACCESSIBLE ROUTE</span><span class="art-label label-bottom">정보를 잇고, 이동을 잇다</span>
+    </div>
+  </section>
+
+  <section class="search-card">
+    <div class="search-title"><div class="search-icon">⌕</div><div><b>어느 역을 찾으세요?</b><small>역 이름으로 접근성 정보를 검색하세요.</small></div></div>
+    <form id="searchForm" class="search-form"><label class="sr-only" for="stationSearch">지하철역 이름</label><input id="stationSearch" type="search" list="stationOptions" placeholder="예: 시청역, 강남역" autocomplete="off"><datalist id="stationOptions"></datalist><button type="submit" class="button button-dark">역 검색 <span>→</span></button></form>
+    <div class="quick-row"><span>빠른 검색</span><button class="quick-chip" data-station="시청역">시청역</button><button class="quick-chip" data-station="서울역">서울역</button><button class="quick-chip" data-station="강남역">강남역</button><span id="searchMessage" class="search-message" role="status">역을 검색하거나 빠른 검색을 선택하세요.</span></div>
+  </section>
+
+  <section class="station-head">
+    <div><div class="eyebrow">SELECTED STATION</div><h2 id="stationName">시청역</h2><p id="stationMeta">역 정보를 검색해 주세요.</p></div>
+    <div class="station-head-right"><span id="dataSourceBadge" class="source-badge demo">불러오는 중</span><div class="updated">마지막 조회 <b id="lastUpdated">아직 조회 전</b></div></div>
+  </section>
+
+  <section class="stats-grid" aria-label="역 정보 요약">
+    <article class="stat-card stat-elevator"><div class="stat-top"><span>엘리베이터</span><span class="stat-icon">↕</span></div><strong id="elevatorCount">—</strong><small id="elevatorSub">이 역의 엘리베이터 정보</small><div class="stat-bar"><span id="elevatorBar"></span></div></article>
+    <article class="stat-card stat-issues"><div class="stat-top"><span>이동 불편 제보</span><span class="stat-icon">!</span></div><strong id="issueCount">0</strong><small>이 역에 등록된 제보</small><div class="stat-bar"><span id="issueBar"></span></div></article>
+    <article class="stat-card stat-trust"><div class="stat-top"><span>정보 확인 상태</span><span class="stat-icon">✓</span></div><strong id="trustCount">확인 필요</strong><small>출처와 확인 시점 기준</small><div class="trust-mini"><span class="dot official"></span>공식 데이터 <span class="dot community"></span>이용자 제보</div></article>
+  </section>
+
+  <section class="content-grid">
+    <div class="main-column">
+      <section class="surface">
+        <div class="section-head"><div><div class="eyebrow">FACILITIES</div><h3>접근성 시설 정보</h3><p>엘리베이터, 휠체어 충전기·리프트, 교통약자 도우미, 장애인 화장실 정보를 확인하세요.</p></div><span class="section-symbol">↕</span></div>
+        <div class="filter-row"><label for="categoryFilter">시설 <select id="categoryFilter"><option value="all">전체</option><option value="elevator">엘리베이터</option><option value="charger">휠체어 급속충전기</option><option value="lift">휠체어 리프트</option><option value="helper">교통약자 도우미</option><option value="toilet">장애인 화장실</option></select></label></div>
+        <div id="facilityNotice" class="notice-banner hidden" role="status"></div>
+        <div id="elevatorList" class="facility-list" aria-live="polite"><div class="empty-state"><span class="empty-icon">↕</span><b>시설 정보를 불러오는 중이에요</b><p>서울시 공공데이터를 서버에서 받아오고 있어요. 잠시만 기다려 주세요.</p></div></div>
+      </section>
+      <section class="surface">
+        <div class="section-head"><div><div class="eyebrow">ACCESSIBILITY REPORTS</div><h3>이동 불편 정보</h3><p>단차, 통로 장애물, 경사, 시설 이용 제한 등</p></div><span class="section-symbol warning-symbol">!</span></div>
+        <div class="filter-row"><label for="issueFilter">유형 <select id="issueFilter"><option value="all">전체</option><option value="obstacle">이동 장애물</option><option value="elevator">엘리베이터</option></select></label><label for="trustFilter">상태 <select id="trustFilter"><option value="all">전체</option><option value="checked">확인 기록 있음</option><option value="community">미확인 제보</option></select></label></div>
+        <div id="issueList" class="report-list"></div><div id="emptyIssues" class="empty-inline hidden">해당 조건의 제보가 없어요.</div>
+      </section>
+    </div>
+
+    <aside class="side-column">
+      <section class="surface report-box">
+        <div class="side-title"><span class="side-icon">＋</span><div><h3>불편 사항 제보</h3><p>현장의 정보를 함께 업데이트해요.</p></div></div>
+        <form id="reportForm" class="report-form">
+          <label for="reportStation">역 이름 <span>*</span></label><input id="reportStation" required maxlength="40" placeholder="예: 시청역">
+          <label for="reportLocation">정확한 위치 <span>*</span></label><input id="reportLocation" required maxlength="100" placeholder="예: 2번 출구 통로">
+          <label for="reportType">문제 유형 <span>*</span></label><select id="reportType" required><option value="">유형을 선택하세요</option><option>단차·턱</option><option>통로 장애물</option><option>급한 경사</option><option>엘리베이터 이용 제한</option><option>기타</option></select>
+          <label for="reportWhen">언제 확인했나요?</label><select id="reportWhen"><option>방금 전</option><option>오늘</option><option>하루 이상 전</option></select>
+          <label for="reportDescription">상세 설명 <span>*</span></label><textarea id="reportDescription" required maxlength="500" rows="3" placeholder="이동을 어렵게 하는 상황을 적어주세요."></textarea>
+          <label class="check-line"><input id="privacyConfirm" type="checkbox" required><span>이름·연락처·얼굴 등 개인정보를 포함하지 않았어요.</span></label>
+          <button type="submit" class="button button-green full-button">제보 등록 <span>→</span></button>
+          <p class="form-footnote">제보는 확인 전까지 ‘미확인’으로 표시됩니다. 현재는 이 기기의 브라우저에만 저장되며, 다른 이용자에게 공유되지 않아요. 브라우저 데이터를 지우면 함께 삭제됩니다.</p>
+        </form>
+        <div id="reportFeedback" class="feedback hidden" role="status"></div>
+      </section>
+
+      <section class="surface trust-box">
+        <div class="eyebrow">HOW TO READ</div><h3>정보 신뢰도 안내</h3>
+        <div class="trust-item"><span class="trust-bullet bullet-official">✓</span><div><b>공식 데이터</b><p>공공기관 API에서 받은 정보. 시설의 현재 상태와 차이가 날 수 있어요.</p></div></div>
+        <div class="trust-item"><span class="trust-bullet bullet-checked">✓</span><div><b>확인 기록 있음</b><p>확인 주체와 확인 시점이 기록된 정보.</p></div></div>
+        <div class="trust-item"><span class="trust-bullet bullet-community">?</span><div><b>미확인 제보</b><p>이용자가 등록했지만 아직 검토되지 않은 정보.</p></div></div>
+        <div class="trust-warning">신뢰도 표시는 출처와 검토 상태를 뜻하며, 이동 경로의 안전을 보증하지 않습니다.</div>
+      </section>
+      <section class="source-card"><span class="source-logo">공공</span><div><b>데이터 출처</b><p>서울 열린데이터광장 · 서울교통공사 교통약자 이용정보</p><a href="https://data.seoul.go.kr/dataList/OA-22740/A/1/datasetView.do" target="_blank" rel="noopener">교통약자 이용정보 API 안내 보기 ↗</a></div></section>
+    </aside>
+  </section>
+
+  <footer><span class="footer-brand">이음맵</span><span>모두의 이동을 위한 접근성 정보 프로젝트</span><span>프로토타입 · 정확한 정보는 현장 안내로 확인하세요.</span></footer>
+</main>
+
+<div id="settingsModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+  <div class="modal-backdrop" data-close="true"></div>
+  <div class="modal-card">
+    <div class="modal-head"><div><div class="eyebrow">DATA CONNECTION</div><h2 id="settingsTitle">데이터 연결 상태</h2><p>서울시 공공데이터 5종을 자동으로 불러옵니다. 인증키나 API 주소를 입력할 필요가 없어요.</p></div><button id="closeSettings" class="close-button" aria-label="닫기">×</button></div>
+    <div class="modal-notice"><b>연결 방식</b><p>이 사이트의 서버(/api/facilities)가 서울 열린데이터광장 Open API를 대신 호출합니다. 인증키는 서버 환경변수에만 보관되며 브라우저로 전달되지 않습니다.</p></div>
+    <div id="serviceStatusList" class="service-status-list" aria-live="polite"></div>
+    <div class="modal-actions"><button type="button" id="closeSettingsBottom" class="button button-outline">닫기</button><button type="button" id="reloadData" class="button button-green">다시 불러오기 <span>↻</span></button></div>
+    <div id="apiStatus" class="api-status hidden" role="status"></div>
+    <div class="api-links"><b>공식 자료 (서울 열린데이터광장)</b><a href="https://data.seoul.go.kr/dataList/OA-22740/A/1/datasetView.do" target="_blank" rel="noopener">교통약자이용정보 엘리베이터 현황 ↗</a><a href="https://data.seoul.go.kr/dataList/OA-22745/A/1/datasetView.do" target="_blank" rel="noopener">교통약자이용정보 휠체어급속충전기 현황 ↗</a><a href="https://data.seoul.go.kr/dataList/OA-22743/A/1/datasetView.do" target="_blank" rel="noopener">교통약자이용정보 휠체어리프트 현황 ↗</a><a href="https://data.seoul.go.kr/dataList/OA-22748/A/1/datasetView.do" target="_blank" rel="noopener">교통약자이용정보 교통약자도우미 현황 ↗</a><a href="https://data.seoul.go.kr/dataList/OA-22741/A/1/datasetView.do" target="_blank" rel="noopener">교통약자이용정보 장애인화장실 현황 ↗</a></div>
+    <p class="modal-caveat">서울교통공사 운영 구간의 데이터만 포함되어, 다른 운영기관(코레일, 9호선, 신분당선 등) 구간 시설은 보이지 않을 수 있습니다. 실제 장애물 정보는 아직 공공 API와 연결되지 않았으며, 이용자 제보로 관리됩니다.</p>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

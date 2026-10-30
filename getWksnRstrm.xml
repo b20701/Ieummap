@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 테스트용 모의 데이터입니다. 실제 시설 정보가 아닙니다.
+     구조는 2026-10 실제 응답(이용자 제공 PDF)과 같은 공공데이터포털 형식입니다: resultCode 00 / NORMAL_CODE, items/item, pageNo·numOfRows·totalCount.
+     화장실 필드명 중 stnNm·lineNm·dtlPstn·fcltNm·crtrYmd 외(gateInotSe 등)는 확인되지 않은 가정입니다. -->
+<response><header><resultCode>00</resultCode><resultMsg>NORMAL_CODE</resultMsg></header><body><items>
+<item><fcltNo>9200001</fcltNo><fcltNm>건축)대합실화장실-시청(1) B1</fcltNm><lineNm>1호선</lineNm><stnCd>0150</stnCd><stnNm>시청</stnNm><stnNo>132</stnNo><crtrYmd>20240701</crtrYmd><gateInotSe>내부</gateInotSe><grndUdgdSe>지하</grndUdgdSe><vcntEntrcNo>3</vcntEntrcNo><dtlPstn>지하1층 개집표기 안쪽</dtlPstn><fcltCmpst>일반(남,여) / 교통약자(남,여)</fcltCmpst><flr>B1</flr><dprChgTblYn>Y</dprChgTblYn></item>
+<item><fcltNo>9200002</fcltNo><fcltNm>건축)대합실화장실-서울역(4) B1</fcltNm><lineNm>4호선</lineNm><stnCd>0426</stnCd><stnNm>서울</stnNm><stnNo>426</stnNo><crtrYmd>20240701</crtrYmd><gateInotSe>외부</gateInotSe><grndUdgdSe>지하</grndUdgdSe><vcntEntrcNo>1</vcntEntrcNo><dtlPstn>대합실 개집표기 바깥쪽</dtlPstn><fcltCmpst>일반(남,여) / 교통약자(남,여)</fcltCmpst><flr>B1</flr><dprChgTblYn>N</dprChgTblYn></item>
+<item><fcltNo>9200003</fcltNo><fcltNm>건축)대합실화장실-강남 B1</fcltNm><lineNm>2호선</lineNm><stnCd>0222</stnCd><stnNm>강남</stnNm><stnNo>222</stnNo><crtrYmd>20240701</crtrYmd><gateInotSe>내부</gateInotSe><grndUdgdSe>지하</grndUdgdSe><vcntEntrcNo>1</vcntEntrcNo><dtlPstn>대합실 1번 출입구 방향</dtlPstn><fcltCmpst>일반(남,여) / 교통약자(남,여)</fcltCmpst><flr>B1</flr><dprChgTblYn>Y</dprChgTblYn></item>
+</items><pageNo>1</pageNo><numOfRows>1000</numOfRows><totalCount>3</totalCount></body></response>

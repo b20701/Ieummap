@@ -1,0 +1,12 @@
+{
+  "name": "ieummap",
+  "version": "7.3.0",
+  "private": true,
+  "description": "이음맵 — 서울 지하철역 휠체어 접근성 시설 정보 (서울시 Open API 서버 프록시 포함)",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node scripts/dev-server.js",
+    "mock": "node scripts/dev-server.js --mock",
+    "test": "node --test"
+  }
+}

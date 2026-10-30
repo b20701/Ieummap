@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 테스트용 모의 데이터입니다. 실제 시설 정보가 아닙니다.
+     구조는 2026-10 실제 응답(이용자 제공 PDF)과 같은 공공데이터포털 형식입니다: resultCode 00 / NORMAL_CODE, items/item, pageNo·numOfRows·totalCount.
+     리프트의 층 필드는 엘리베이터와 같다고 가정합니다(실제 응답 값 순서는 같음). -->
+<response><header><resultCode>00</resultCode><resultMsg>NORMAL_CODE</resultMsg></header><body><items>
+<item><fcltNo>9100001</fcltNo><fcltNm>승강기)휠체어리프트-서울역 환승통로 내부1</fcltNm><lineNm>4호선</lineNm><stnCd>0426</stnCd><stnNm>서울역</stnNm><stnNo>426</stnNo><crtrYmd>20210527</crtrYmd><mngNo>1900-001</mngNo><bgngFlrGrndUdgdSe>지하</bgngFlrGrndUdgdSe><bgngFlr>B2</bgngFlr><endFlrGrndUdgdSe>지하</endFlrGrndUdgdSe><endFlr>B1</endFlr><dtlPstn>환승통로 계단</dtlPstn><oprtngSitu>M</oprtngSitu></item>
+<item><fcltNo>9100002</fcltNo><fcltNm>승강기)휠체어리프트-시청 4번 출구 외부1</fcltNm><lineNm>1호선</lineNm><stnCd>0150</stnCd><stnNm>시청</stnNm><stnNo>132</stnNo><crtrYmd>20210527</crtrYmd><mngNo>1900-002</mngNo><bgngFlrGrndUdgdSe>지하</bgngFlrGrndUdgdSe><bgngFlr>B1</bgngFlr><endFlrGrndUdgdSe>지상</endFlrGrndUdgdSe><endFlr>1</endFlr><dtlPstn>4번 출입구 계단</dtlPstn><oprtngSitu>B</oprtngSitu></item>
+</items><pageNo>1</pageNo><numOfRows>1000</numOfRows><totalCount>2</totalCount></body></response>

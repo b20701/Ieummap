@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 테스트용 모의 데이터입니다. 실제 시설 정보가 아닙니다.
+     구조는 2026-10 실제 응답(이용자 제공 PDF)과 같은 공공데이터포털 형식입니다: resultCode 00 / NORMAL_CODE, items/item, pageNo·numOfRows·totalCount.
+     충전기 필드명 중 stnNm·lineNm·dtlPstn·crtrYmd 외(flr, grndUdgdSe, chrgDvcCnt 등)는 확인되지 않은 가정입니다. 실제 응답에는 운영 상태 값이 없습니다. -->
+<response><header><resultCode>00</resultCode><resultMsg>NORMAL_CODE</resultMsg></header><body><items>
+<item><fcltNm>전동휠체어 충전설비-</fcltNm><lineNm>1호선</lineNm><stnCd>0150</stnCd><stnNm>시청</stnNm><stnNo>132</stnNo><fcltTy>기타</fcltTy><flr>B1</flr><chrgDvcCnt>1</chrgDvcCnt><dtlPstn>대합실 고객안내센터 옆</dtlPstn><crtrYmd>20241231</crtrYmd><grndUdgdSe>지하</grndUdgdSe></item>
+<item><fcltNm>전동휠체어 충전설비-</fcltNm><lineNm>2호선</lineNm><stnCd>0222</stnCd><stnNm>강남</stnNm><stnNo>222</stnNo><fcltTy>기타</fcltTy><flr>B1</flr><chrgDvcCnt>1</chrgDvcCnt><dtlPstn>대합실 11번 출입구 방향</dtlPstn><crtrYmd>20241231</crtrYmd><grndUdgdSe>지하</grndUdgdSe></item>
+</items><pageNo>1</pageNo><numOfRows>1000</numOfRows><totalCount>2</totalCount></body></response>

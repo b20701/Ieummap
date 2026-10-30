@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 테스트용 모의 데이터입니다. 실제 시설 정보가 아닙니다.
+     구조는 2026-10 실제 응답(이용자 제공 PDF)과 같은 공공데이터포털 형식입니다: resultCode 00 / NORMAL_CODE, items/item, pageNo·numOfRows·totalCount.
+     실제 도우미 응답은 역명·역코드·역번호·호선·전화번호·기준일만 있습니다. 전화번호 필드명(telno)은 확인되지 않은 가정이며, 번호는 가짜입니다. -->
+<response><header><resultCode>00</resultCode><resultMsg>NORMAL_CODE</resultMsg></header><body><items>
+<item><stnNm>시청</stnNm><stnCd>0201</stnCd><stnNo>201</stnNo><lineNm>2호선</lineNm><telno>0212345678</telno><crtrYmd>20250531</crtrYmd></item>
+<item><stnNm>강남</stnNm><stnCd>0222</stnCd><stnNo>222</stnNo><lineNm>2호선</lineNm><telno>0212345678</telno><crtrYmd>20250531</crtrYmd></item>
+</items><pageNo>1</pageNo><numOfRows>1000</numOfRows><totalCount>2</totalCount></body></response>
